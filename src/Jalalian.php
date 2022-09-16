@@ -183,6 +183,21 @@ class Jalalian
         );
     }
 
+    public function getLastDayOfYear(): Jalalian
+    {
+
+        $last_day = $this->isLeapYear() ? 30 : 29;
+        return new static(
+            $this->getYear(),
+            12,
+            $last_day,
+            $this->getHour(),
+            $this->getMinute(),
+            $this->getSecond(),
+            $this->getTimezone()
+        );
+    }
+
     public function getMonthDays()
     {
         if ($this->getMonth() <= 6) {
