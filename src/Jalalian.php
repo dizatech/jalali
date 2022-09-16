@@ -150,6 +150,26 @@ class Jalalian
         );
     }
 
+    public function getLastDayOfMonth(): Jalalian
+    {
+        $last_day = 30;
+        if( $this->getMonth() <=6 ){
+            $last_day = 31;
+        }
+        elseif( $this->getMonth() == 12 ){
+            $last_day = $this->isLeapYear() ? 30 : 29;
+        }
+        return new static(
+            $this->getYear(),
+            $this->getMonth(),
+            $last_day,
+            $this->getHour(),
+            $this->getMinute(),
+            $this->getSecond(),
+            $this->getTimezone()
+        );
+    }
+
     public function getFirstDayOfYear(): Jalalian
     {
         return new static(

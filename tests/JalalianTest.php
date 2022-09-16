@@ -205,4 +205,19 @@ final class JalalianTest extends TestCase
         $jDate = new Jalalian(1393, 9, 5);
         $this->assertEquals($jDate->getFirstDayOfYear()->format('Y-m-d'), '1393-01-01');
     }
+
+    public function testGetLastDayOfMonth()
+    {
+        $jDate = new Jalalian(1401, 6, 26);
+        $this->assertEquals($jDate->getLastDayOfMonth()->format('Y-m-d'), '1401-06-31');
+
+        $jDate = new Jalalian(1395, 8, 22);
+        $this->assertEquals($jDate->getLastDayOfMonth()->format('Y-m-d'), '1395-08-30');
+
+        $jDate = new Jalalian(1401, 12, 22);
+        $this->assertEquals($jDate->getLastDayOfMonth()->format('Y-m-d'), '1401-12-29');
+
+        $jDate = new Jalalian(1399, 12, 22);
+        $this->assertEquals($jDate->getLastDayOfMonth()->format('Y-m-d'), '1399-12-30');
+    }
 }
