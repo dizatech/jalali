@@ -695,4 +695,35 @@ class Jalalian
     {
         return floor(($this->day + 5 - $this->getDayOfWeek()) / 7) + 1;
     }
+
+    public function diff(Jalalian $ref) : array
+    {
+        if( $this->equalsTo($ref) ){
+            return [0, 0, 0];
+        }
+
+        $bigger_date = $this->greaterThan($ref) ? $this : $ref;
+        $b_y = $bigger_date->getYear();
+        $b_m = $bigger_date->getMonth();
+        $b_d = $bigger_date->getDay();
+        $smaller_date = $this->greaterThan($ref) ? $ref : $this;
+        $s_y = $smaller_date->getYear();
+        $s_m = $smaller_date->getMonth();
+        $s_d = $smaller_date->getDay();
+
+        $y_diff = $b_y - $s_y;
+        $m_diff = $b_m - $s_m;
+        $d_diff = $b_d - $s_d;
+        if( $d_diff < 0 ){
+            $d_diff = $b_d +
+                $smaller_date->getLastDayOfMonth()->getDay() - $smaller_date->getDay();
+            $m_diff--;
+        }
+        if( $m_diff < 0 ){
+            $m_diff += 12;
+            $y_diff--;
+        }
+        
+        return [$y_diff, $m_diff, $d_diff];
+    }
 }
