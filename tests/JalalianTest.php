@@ -283,6 +283,30 @@ final class JalalianTest extends TestCase
         $this->assertEquals( $jDate->diff( new Jalalian(1405, 9, 10) ), [4, 2, 15] );
 
         //greater year, greater month, greater day
-        $this->assertEquals( $jDate->diff( new Jalalian(1405, 9, 30) ), [4, 3, 4] );    
+        $this->assertEquals( $jDate->diff( new Jalalian(1405, 9, 30) ), [4, 3, 4] );
+    }
+    
+    public function testAddDay()
+    {
+        $jDate = new Jalalian(1401, 6, 31);
+        $this->assertEquals($jDate->addDay()->format('Y-m-d'), '1401-07-01');
+    }
+
+    public function testSubDay()
+    {
+        $jDate = new Jalalian(1401, 6, 1);
+        $this->assertEquals($jDate->subDay()->format('Y-m-d'), '1401-05-31');
+    }
+
+    public function testGetLastWeek()
+    {
+        $jDate = new Jalalian(1401, 6, 8);
+        $this->assertEquals($jDate->getLastWeek()->format('Y-m-d'), '1401-06-01');
+    }
+
+    public function testGetLastMonth()
+    {
+        $jDate = new Jalalian(1401, 6, 8);
+        $this->assertEquals($jDate->getLastMonth()->format('Y-m-d'), '1401-05-08');
     }
 }
